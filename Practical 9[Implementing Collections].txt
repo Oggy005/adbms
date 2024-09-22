@@ -1,0 +1,45 @@
+A)Create a nested table with 5 integers and print them using the collection method first and last. Also print total integers in a table.
+
+declare
+type integertable is table of int;
+num_table integertable:=integertable(10,20,30,40,50);
+first_element int;
+last_element int;
+total_count int;
+begin
+first_element:=num_table.first;
+last_element:=num_table.last;
+dbms_output.put_line('first_element:'||num_table(first_element));
+dbms_output.put_line('last_element:'||num_table(last_element));
+total_count:=num_table.count;
+dbms_output.put_line('Total count of integers:'||total_count);
+end;
+
+B)Using Varray, create a table of 5 elements and print them.
+
+declare
+type integerarray is varray(5) of integer;
+num_array integerarray:=integerarray(10,20,30,40,50);
+begin
+for i in 1..num_array.count loop
+dbms_output.put_line('Element'||i||':'||num_array(i));
+end loop;
+end;
+
+C)Create a table of 10 colors, print them. Delete the color at location 5 and print the remaining elements.
+
+declare
+type color is table of varchar(10);
+my_col color:=color('pink','blue','red','yellow','white','brown','green','purple','black','orange');
+begin
+for i in 1..my_col.count loop
+dbms_output.put_line('Color'||i||':'||my_col(i));
+end loop;
+my_col.delete(1,5);
+dbms_output.put_line('*************************');
+for i in 1..10 loop
+if my_col.exists(i) then
+dbms_output.put_line('Color'||i||':'||my_col(i));
+end if;
+end loop;
+end;

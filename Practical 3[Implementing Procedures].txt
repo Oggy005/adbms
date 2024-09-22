@@ -1,0 +1,86 @@
+A)Create and replace an empty procedure and call it
+
+create procedure p2
+as
+begin
+null;
+end;
+
+create or replace procedure p2
+as
+begin
+dbms_output.put_line('SYIT');
+end;
+
+execute p2
+
+B)Create a procedure to display the square of a number using In, OUT and IN OUT mode.
+create or replace procedure  p2(a in int,b out int)
+as
+begin
+b:=a*a;
+end;
+
+declare
+b number;
+begin
+p2(6,b);
+dbms_output.put_line(b);
+end;
+
+*IN OUT
+create or replace procedure p2(n in out int)
+as
+begin
+n:=n*n;
+end;
+
+declare
+n number:=&n;
+begin
+p2(n);
+dbms_output.put_line(n);
+end;
+
+C)Create a procedure to display the greatest among two numbers.
+
+create or replace procedure p2
+as
+a number:=&a;
+b number:=&b;
+begin
+if(a>b)then
+dbms_output.put_line('a is greater');
+else
+dbms_output.put_line('b is greater');
+end if;
+end;
+
+execute p2
+
+D)Create a procedure to display the employee name whose employeeno is accepted by the user.
+create or replace procedure p1(emp_no in emp.empno%type)
+as
+emp_name emp.ename%type;
+begin
+select ename into emp_name from emp where empno=emp_no;
+dbms_output.put_line('employee name:'||emp_name);
+end;
+
+begin
+p1(7900);
+end;
+
+5)Create a procedure to display the sum of salary of the employees whose job is accepted by the user.
+
+create or replace procedure p1(emp_job in varchar)
+as
+emp_sal emp.sal%type;
+begin
+select sum(sal) into emp_sal from emp where job=emp_job;
+dbms_output.put_line('employee salary:'||emp_sal);
+end;
+
+begin
+p1('MANAGER');
+end;

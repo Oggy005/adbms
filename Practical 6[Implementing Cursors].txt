@@ -1,0 +1,60 @@
+A)Write a PL/SQL block to UPDATE the salary of the employee by 500 whose department number is given by the user and display the number of rows if UPDATED. Otherwise DISPLAY the message ‘No Records Updated’ by using IMPLICIT CURSOR.
+
+begin
+update emp set sal=sal+500 where deptno=&deptno;
+if sql%found then
+dbms_output.put_line(sql%rowcount);
+elsif sql%notfound then
+dbms_output.put_line('deptno doesnt exist');
+else
+null;
+end if;
+end;
+/
+
+B)Write a PL/SQL block using a cursor to display the employee names and their salaries.
+
+declare
+exec emp%rowtype;
+cursor c1 is select * from emp;
+begin
+open c1;
+fetch c1 into exec;
+while(c1%found)loop
+dbms_output.put_line(exec.ename||' '||exec.sal);
+fetch c1 into exec;
+end loop;
+close c1;
+end;
+
+C)Write a PL/SQL block to DISPLAY the employee name along with their jobs.
+
+declare
+exec emp%rowtype;
+cursor c1 is select*from emp;
+begin
+open c1;
+fetch c1 into exec;
+while(c1%found)loop
+dbms_output.put_line(exec.ename||' '||exec.job);
+fetch c1 into exec;
+end loop;
+close c1;
+end;
+
+D)Write a PL/SQL block using a cursor to display the name and job of an employee who is working as ‘MANAGER’. 
+
+declare
+exec emp%rowtype;
+cursor c1 is select*from emp where job='MANAGER';
+begin
+open c1;
+fetch c1 into exec;
+while(c1%found)loop
+dbms_output.put_line(exec.ename||' '||exec.job);
+fetch c1 into exec;
+end loop;
+close c1;
+end;
+
+

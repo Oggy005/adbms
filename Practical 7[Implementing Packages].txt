@@ -1,0 +1,139 @@
+A)Create a package with a procedure to swap two numbers and a function to return factorial of a number.
+
+create or replace package pack1
+as
+procedure p1;
+function f1 return int;
+end pack1;
+/
+ 
+create or replace package body pack1
+as 
+procedure p1
+as
+a int:=10;
+b int:=5;
+temp int; 
+begin
+dbms_output.put_line('a is'||a||'b is'||b);
+temp:=a;
+a:=b;
+b:=temp;
+dbms_output.put_line('new a is'||a||'new b is'||b);
+end;
+function f1 return int
+as
+fact int:=5;
+n int:=1;
+i int:=1;
+begin
+while (i<fact)loop
+n:=n*i;
+i:=i+1;
+end loop;
+return n;
+end;
+end pack1;
+/
+
+execute pack1.p1;
+
+B)Create a package with a procedure and a function to display today’s date.
+create or replace package pack2
+as
+procedure p2;
+function f2 return date;
+end pack2;
+/
+
+create or replace package body pack2
+as
+procedure p2
+as
+d date;
+begin 
+select sysdate into d from dual;
+dbms_output.put_line(d);
+end;
+function f2 return date
+as
+d date;
+begin
+select sysdate into d from dual;
+return d;
+end;
+end pack2;
+/
+
+execute pack2.p2
+
+C)Create a package with a function and procedure to find the sum of the first 10 natural numbers.
+
+create or replace package pack4
+as
+procedure p4 (i int);
+function f4 return int;
+end pack4;
+/
+
+create or replace package body pack4
+as
+procedure p4 (i int)
+as
+begin
+if mod(i,2)=0 then
+dbms_output.put_line('num is even');
+else
+dbms_output.put_line('num is odd');
+end if;
+end;
+function f4 return int
+as
+n int:=0;
+begin
+for i in 1..10 loop
+n:=n+1;
+end loop;
+return n;
+end;
+end pack4;
+/
+
+execute pack4.p4;
+select pack4.f4 from dual;
+
+d)Create a package with a procedure to check whether the given number is even or odd and a function to find the sum of the first 10 even numbers.
+
+create or replace package pack3
+as
+procedure p3;
+function f3 return int;
+end pack3;
+/
+
+create or replace package body pack3
+as
+procedure p3
+as
+n int:=0;
+begin
+for i in 1..10 loop
+n:=n+1;
+dbms_output.put_line(n);
+end loop;
+end;
+function f3 return int
+as
+n int:=0;
+begin
+for i in 1..10 loop
+n:=n+1;
+end loop;
+return n;
+end;
+end pack3;
+/
+
+execute pack3.p3;
+select pack3.f3 from dual;
+

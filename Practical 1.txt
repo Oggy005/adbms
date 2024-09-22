@@ -1,0 +1,111 @@
+A)Write a PL/SQL block to print your name.
+
+set serveroutput on
+begin
+dbms_output.put_line('Shubham');
+end;
+
+B)Write a PL/SQL block to print the area of a circle.
+
+declare
+r number:=4;
+area float;
+begin
+area:=3.14*r*r;
+dbms_output.put_line(area);
+end;
+
+C)Write a PL/SQL block to print the addition of two numbers.
+
+declare
+n1 number:=10;
+n2 float:=10.34;
+n3 float;
+begin
+n3:=n1+n2;
+dbms_output.put_line(n3);
+end;
+
+D)Write a PL/SQL block to print the division of two numbers.
+
+declare
+n1 number:=10;
+n2 number:=2;
+n3 number;
+begin
+n3:=n1/n2;
+dbms_output.put_line(n3);
+end;
+
+E)Write a PL/SQL block to print the temperature in fahrenheit when the temperature is given is in celsius.
+
+declare
+celsius number:=25;
+Fahrenheit number;
+begin
+fahrenheit:=(celsius*9/5)+32;
+dbms_output.put_line(fahrenheit);
+end;
+
+F)Write a PL/SQL block to find the area of a square.
+
+declare
+side_length number:=4;
+area number;
+begin
+area:=side_length*side_length;
+dbms_output.put_line(area);
+end;
+
+G)Write a PL/SQL block to display the total number of employees.
+
+declare
+c int;
+begin
+select count(*) into c from emp;
+dbms_output.put_line('total number of employees are:'||c);
+end;
+
+H)Write a PL/SQL block to print the name and job of an employee whose employee  number is given by the user.
+
+declare
+n varchar(20);
+j varchar(20);
+begin
+select ENAME,JOB into n,j from emp where EMPNO=&EMPNO;
+dbms_output.put_line('Name is:'||n);
+dbms_output.put_line('Name is:'||j);
+end;
+
+I)Write a PL/SQL block to calculate the area of the circle and store the radius and area in a table AOC (radius, area).
+
+declare
+pi float:=3.14;
+radius float:=&radius;
+area float;
+begin
+area:=pi*radius*radius;
+dbms_output.put_line('Area of circle:'||area);
+insert into AOC values(radius,area);
+commit;
+end;
+
+select * from AOC;
+
+J)Write a PL/SQL block to print the total number of employees working as Manager in  deptno 10.
+
+declare
+e int;
+begin
+select count(*) into e from where emp job='MANAGER' and deptno:=10;
+dbms_output.put_line('total number of employees working as manager in deptno:10'||e);
+end;
+
+K)Write a PL/SQL block to print the total salary of the employees from the employee table.
+
+declare
+s int;
+begin
+select sum(SAL) into s from emp;
+dbms_output.put_line('Total salary is:'||s);
+end;
