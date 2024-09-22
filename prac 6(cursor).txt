@@ -1,0 +1,57 @@
+A)
+begin
+update emp set sal=sal+500 where deptno=&deptno;
+if sql%found then
+dbms_output.put_line(sql%rowcount);
+elsif sql%notfound then
+dbms_output.put_line('deptno does not exist');
+else
+dbms_output.put_line('records not updated');
+end if;
+end;
+/ 
+
+B)
+declare
+erec emp%rowtype;
+cursor c1 is select * from emp;
+begin
+open c1;
+fetch c1 into erec;
+while (c1%found) loop
+dbms_output.put_line(erec.ename||''||erec.sal);
+fetch c1 into erec;
+end loop;
+close c1;
+end;
+/
+
+c)
+declare
+erec emp%rowtype;
+cursor c1 is select * from emp;
+begin
+open c1;
+fetch c1 into erec;
+while (c1%found) loop
+dbms_output.put_line(erec.ename||''||erec.job);
+fetch c1 into erec;
+end loop;
+close c1;
+end;
+/
+
+d)
+declare
+erec emp%rowtype;
+cursor c1 is select * from emp where job='MANAGER';
+begin
+open c1;
+fetch c1 into erec;
+while (c1%found) loop
+dbms_output.put_line(erec.ename||''||erec.job);
+fetch c1 into erec;
+end loop;
+close c1;
+end;
+/

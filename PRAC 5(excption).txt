@@ -1,0 +1,79 @@
+PRACTICAL 5:
+
+A] Implement ALL System Defined exceptions.
+
+
+B] Write a PL/SQL block to raise an exception when an employee name does not start with ‘A’.
+
+
+declare
+e1 exception; 
+eno number; 
+S varchar (20) ; 
+begin 
+select ename into s from emp where empno='&empno'; 
+if s not like 'A%' then 
+raise e1; 
+else 
+dbms_output.put_line(s); 
+end if; 
+exception 
+when e1 then 
+dbms_output.put_line('employee name does not start with A');
+end; 
+
+
+C] Write a PL/SQL block to implement raise_application_error() when the age of a student is entered less than 0.
+
+declare  
+e1 exception; 
+stud_age number:=-5; 
+begin 
+if stud_age<0 then 
+raise e1; 
+else 
+dbms_output.put_line('student age is valid'||stud_age); 
+end if; 
+exception 
+when e1 then 
+raise_application_error(-20001, 'student age is less than 0'); 
+end; 
+
+
+D]Write a PL/SQL block to raise an exception when the divisor is 0.
+
+declare  
+e1 exception; 
+num number:=10; 
+div number:=0; 
+div_result number; 
+begin 
+if div=0 then 
+raise e1; 
+else 
+div_result:=num/div; 
+dbms_output.put_line('Result:'||div_result); 
+end if;
+exception
+when e1 then
+dbms_output.put_line('divisor cannot be 0'); 
+end;
+
+
+E] Write a PL/SQL block to raise an exception when the number of employees working in department 10 are less than 2.
+
+
+declare
+empno number; 
+e1 exception; 
+begin 
+select count(*) into empno from emp where deptno=10; 
+if empno<2 then 
+raise e1; 
+else 
+dbms_output.put_line('Number of employees in department 10 is sufficient:'||empno); 
+end if; 
+exception 
+when e1 then
+dbms_output.put_line('Number of employees in department 10 is less then 2');
+end;
