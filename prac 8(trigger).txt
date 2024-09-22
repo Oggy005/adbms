@@ -1,0 +1,31 @@
+A)
+
+create or replace trigger trg3
+after update
+on employee
+for each row
+begin
+update project
+ set thrs = thrs +:new.hrs
+where pno = :new.project_no;
+end;
+
+B)
+create or replace trigger trg5
+after delete
+on project
+for each row
+begin
+delete employee
+where project_no = :old.pno;
+end;
+
+
+C)
+create or replace trigger trg4
+before insert
+on product
+for each row
+begin
+:new.product_name:=upper(:new.product_name);
+end;
