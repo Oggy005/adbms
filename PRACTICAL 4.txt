@@ -1,0 +1,138 @@
+PRACTICAL 4:
+
+ A] Create a function to display the square of a number.
+
+create or replace function square_of_num(n number)
+return number
+as
+s number;
+begin
+s:=n*n;
+return s;
+end;
+
+select square_of_num(4) from dual;
+
+
+
+
+ B] Create a function to display the greatest among two numbers.
+
+create or replace function f1(x number , y number)
+return varchar
+as
+begin
+if(x>y) then
+return 'x is greater';
+else
+return 'y is greater';
+end if;
+end;
+
+select f1(5,7) from dual;
+
+
+
+
+ C] Create a function to display the employee name whose employee number is accepted by the user.
+
+create or replace function f1(eno int)
+return varchar
+as
+en varchar(20);
+begin
+select ename into en from emp where empno=eno;
+return en;
+end;
+
+select f1(7900) from dual;
+
+
+
+
+ D] Create a function to display the count of the employees whose job is MANAGER.
+
+create or replace function fcount
+return number
+as
+c number;
+begin
+select count (*) into c from emp where job='MANAGER';
+return c;
+end;
+
+select fcount from dual;
+
+
+
+
+ E] Create a function to display today’s date.
+
+create or replace function f1
+return date
+as
+d date;
+begin
+select SYSDATE into d from dual;
+return d;
+end;
+
+select f1 from dual;
+
+
+
+
+ F] Create a function to find the factorial of a number.
+
+create or replace function f1(n number)
+return number
+as
+f number:=1;
+I number:=1;
+begin
+while i<=n loop
+f:=f*i;
+i:=i+1;
+end loop;
+return f;
+end;
+
+select f1(5) from dual;
+
+
+
+
+ G] Create a function to convert Fahrenheit to Celsius.
+
+create or replace function f1(f number)
+return number
+as
+v number;
+begin
+v:=(f-32)*5/9;
+return v;
+end;
+
+select f1(72) from dual;
+
+
+
+
+ H] Create a function to display square root of a number.
+
+create or replace function f1(n number)
+return number
+as
+s number;
+begin
+s:=sqrt(n);
+return s;
+end;
+
+select f1(9) from dual;
+
+
+
+
+ I] Create a function to display Fibonacci series up to first 10 numbers.
+ J] Create a recursive function to find the factorial of a number.

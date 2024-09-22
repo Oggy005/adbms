@@ -1,0 +1,225 @@
+a. Write a PL/SQL to read a number and check whether it is greater than 100 or not and print appropriate message.
+
+declare
+a int:=&a;
+begin
+if(a>100)then
+dbms_output.put_line('a is greater than 100');
+else
+dbms_output.put_line('a is not greater than 100');
+end if;
+end;
+
+b. Write a PL/SQL to check whether a number is even or odd.
+
+declare
+a number:=&a;
+begin
+if mod(a,2)=0 then
+dbms_output.put_line('number is even');
+else
+dbms_output.put_line('number is odd');
+end if;
+end;
+
+c. Write a PL/SQL to check whether the character entered is a vowel or not.
+
+declare
+b varchar(10):='&b';
+begin
+if(b='a' or b='e' or b='i' or b='o' or b='u') then
+dbms_output.put_line('The number is a vowel');
+else
+dbms_output.put_line('The number is not a vowel');
+end if;
+end;
+
+d. Write a PL/SQL block to print greatest among three numbers.
+
+declare
+a number:=&a;
+b number:=&b;
+c number:=&c;
+begin
+if (a>b) and (a>c) then
+dbms_output.put_line('a is greatest number');
+elsif (b>a) and (b>c) then
+dbms_output.put_line('b is greatest number');
+else
+dbms_output.put_line('c is greatest number');
+end if;
+end;
+
+e.Write a PL/SQL block to get the details of marks (rollno, marks1, marks2, grade) out
+of 100 for marks1 and marks2 respectively. Display the grade in table marks using if
+statement as specified below:
+If stud_pecent > 70 then grade is ‘A’
+If stud_pecent > 60 and <70 then grade is ‘B’ else give grade ‘C’
+
+create table stud_info(
+rollno number,
+percent float,
+grade varchar(1)
+)
+/
+
+declare
+rollno number:=&rollno;
+marks1 number:=&marks1;
+marks2 number:=&marks2;
+percent float;
+grade varchar(1);
+begin
+percent:=(marks1+marks2)/200*100;
+if(percent>70) then
+grade:='A';
+dbms_output.put_line('your grade is' || grade);
+elsif(percent>60) and (percent<70) then
+grade:='B';
+dbms_output.put_line('your grade is || grade);
+else
+grade:='C';
+dbms_output.put_line('your grade is || grade);
+end if;
+insert into stud_info(rollno, percent, grade)
+values(rollno, percent, grade);
+end;
+
+f. Write a PL/SQL block using CASE statement to accept the owner name from the user. The user name can be SYS, SYSTEM, HR or SCOTT. If the owner name is SYS then print the result is ‘The Owner is SYS’. If the owner name is SYSTEM then print the result is ‘The Owner is SYSTEM’. If the owner name is HR then print the result is ‘The Owner is HR’. If the owner name is SCOTT then print the result is ‘The Owner is SCOTT’. Otherwise print ‘Invalid Choice’.
+
+declare
+o varchar(10):='&o';
+begin
+case o
+when 'SYS' then dbms_output.put_line('The Owner name is SYS');
+when 'SYSTEM' then dbms_output.put_line('The Owner name is SYSTEM');
+when 'HR' then dbms_output.put_line('The Owner name is HR');
+when 'SCOTT' then dbms_output.put_line('The Owner name is SCOTT');
+else
+dbms_output.put_line('Invalid choice');
+end case;
+end;
+20:00 03-07-2024
+g. Write a PL/SQL block to display the appropriate day of the week according to the choice made by the user.
+
+declare
+a int:=&a;
+begin
+case a
+when 1 then dbms_output.put_line('Monday'); 
+when 2 then dbms_output.put_line('Tuesday'); 
+when 3 then dbms_output.put_line('Wednesday'); 
+when 4 then dbms_output.put_line('Thursday'); 
+when 5 then dbms_output.put_line('Friday'); 
+when 6 then dbms_output.put_line('Saturday'); 
+when 7 then dbms_output.put_line('Sunday'); 
+end case;
+end;
+
+h. Write a PL/SQL block to book a ticket for a movie. The tickets are of two type’s deluxe rows (D) and Ordinary rows (O). While booking the ticket the customer may ask ‘D’ or ‘O’ and number of ticket. For deluxe the rate is 350 and for ordinary 200. Find the total amount that the customer will pay and number of tickets (using case statement).
+
+declare
+DorO varchar(10):='&DorO';
+no number:=&no;
+price number;
+total number;
+begin
+case DorO
+when 'D' then
+price:=350;
+when 'O' then
+price:=200;
+end case;
+total:=price*no;
+dbms_output.put_line('your total is:' || total);
+dbms_output.put_line('No of tickets are:' || no);
+end;
+
+i. Write a block to display the number from 1 to 10 using an unconstrained loop.
+
+declare
+number int:= 1;
+begin
+loop
+dbms_output.put_line(number);
+number := number + 1;
+exit when number = 11;
+end loop;
+end;
+
+j. Write a PL/SQL block to print the numbers from 1 to 10 using While and For Loop.
+
+While Loop
+declare
+a number:=1;
+begin
+while(a<11) loop
+dbms_output.put_line(a);
+a:=a+1;
+end loop;
+end;
+
+k. Write a PL/SQL program to display the sum of the first 10 integers.
+
+declare
+j number:=0;
+begin
+for I in 1..10 loop
+j:=j+i;
+end loop;
+dbms_output.put_line(j);
+end;
+
+l. Write a PL/SQL program to display the sum of the first 10 odd numbers.
+
+declare
+j number:=0;
+I number:=1;
+begin
+while i<20 loop
+j:=j+i;
+i:=i+2;
+end loop;
+dbms_output.put_line(j);
+end;
+
+m. Write a PL/SQL program to calculate the area of a circle and insert the area and radius
+in a table aoc (sno,radius,area) till radius is less than 10.
+
+create one(
+sno number auto_increment,
+radius float,
+area float
+)
+
+
+n. Write a PL/SQL block to find the factorial of a number entered by the user.
+
+declare
+n number:=&n;
+fact number:=1;
+begin
+while (n>1) loop
+fact:=fact*n;
+n:=n-1;
+end loop;
+dbms_output.put_line('The factorial is:' || fact);
+end;
+
+o. Write a PL/SQL block  to print the even and odd numbers between 1 to 20.
+
+declare
+n number:=1;
+m number:=2;
+begin
+dbms_output.put_line('Odd Numbers');
+while n<20 loop
+dbms_output.put_line(n);
+n:=n+2;
+end loop;
+dbms_output.put_line('Even Numbers');
+while m<1 loop
+dbms_output.put_line(m);
+m:=m+2;
+end loop;
+end;

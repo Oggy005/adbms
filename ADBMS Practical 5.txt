@@ -1,0 +1,17 @@
+b)
+
+declare
+e1 exception;
+eno number;
+s varchar(20);
+begin
+select ename into s from emp where emp='&empno';
+if s not like 'A%' then
+raise e1;
+else
+dbms_output.put_line(s);
+end if;
+exception
+when e1 then
+dbms_output.put_line('employee name does not start with A');
+end;

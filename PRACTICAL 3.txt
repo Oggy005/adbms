@@ -1,0 +1,104 @@
+PRACTICAL 3
+
+A]create and replace an element procedure and call it.
+
+create procedure p1
+as
+begin
+null;
+end;
+/
+
+create or replace procedure p1
+as
+begin
+dbms_output.put_line('SYIT');
+end;
+/
+
+execute p1
+
+
+
+B]create a procedure to display the source of a number using in,out and INOUT mode.
+
+1)create or replace procedure p1(a in int, b out int)
+as
+begin
+b:=a*a;
+end;
+/
+
+declare 
+b number;
+begin
+p1(6,b);
+dbms_output.put_line(b);
+end;
+/
+
+
+2)create or replace procedure p1(n in out int)
+as
+begin
+n:=n*n*n;
+end;
+/
+
+declare
+n number:=&n;
+begin
+p1(n);
+dbms_output.put_line(n);
+end;
+/
+
+
+C]create a procedure to display the greatest among 2 numbers
+
+create or replace procedure p1
+as
+a number:=&a;
+b number:=&b;
+begin
+if(a>b) then
+dbms_output.put_line(a||'is greater');
+else
+dbms_output.put_line(b||'is greater');
+end if;
+end;
+/
+
+execute p1;
+
+
+
+D]create a procedure to display the employee name whose employee number is accepted by the user.
+
+create or replace procedure p1
+as
+en emp.ename % type;
+begin
+select ename into en from emp where empno=&empno;
+dbms_output.put_line(en);
+end;
+/
+
+execute p1;
+
+
+E] create a procedure to display the sum of salary of the employees whose job is accepted by the user.
+
+create or replace procedure p1(emp_job in varchar)
+as
+emp_sal emp.sal%type;
+begin
+select sum(sal) into emp_sal from emp where job=emp_job;
+dbms_output.put_line('employee salary:'||emp_sal);
+end;
+/ 
+
+begin
+p1('MANAGER');
+end;
+/

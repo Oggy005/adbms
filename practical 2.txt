@@ -1,0 +1,27 @@
+PRACTICAL 10:
+
+A] Using rowtype variables, display the records of the employee whose employee no is given by the user.
+
+declare 
+rec emp%rowtype; 
+begin 
+select * into rec from emp where empno=&empno;
+dbms_output.put_line(rec.empno||' '||rec.ename||' ' ||rec.sal ||' '||rec.job);
+end;
+
+
+B] Using a cursor type variable, display the records of the employee.
+
+declare
+cursor c 
+is 
+select empno,ename,sal,job from emp; 
+r c%rowtype; 
+begin 
+open c; 
+loop 
+fetch c into r; 
+exit when c%notfound; 
+dbms_output.put_line (r. empno||' '||r.ename||' '||r.sal||' '||r.job); 
+end loop; 
+end;
